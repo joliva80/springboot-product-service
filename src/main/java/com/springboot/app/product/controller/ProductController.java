@@ -1,6 +1,7 @@
 package com.springboot.app.product.controller;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import com.springboot.app.product.model.entity.Product;
@@ -34,7 +35,17 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    public Product getProductById(@PathVariable Long id){
+    public Product getProductById(@PathVariable Long id) throws InterruptedException{
+
+        // Error simulation
+        if(id.equals(10L)){
+            throw new IllegalStateException("Product not found.");
+        }
+        // Timeout simulation
+        if(id.equals(7L)){
+            TimeUnit.SECONDS.sleep(6L);
+        }
+
         Product product = productService.findById(id);
         //product.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
         product.setPort(port);
