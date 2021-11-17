@@ -13,6 +13,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+
+/**
+ * deprecated class, we are actually using commons-lib to import the Product class
+ */
 @Entity
 @Table(name = "products")
 public class Product implements Serializable{
